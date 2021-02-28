@@ -8,11 +8,16 @@ $ gcloud config set run/region europe-west6
 $ gcloud config set run/platform managed 
 ```
 
-Enable Cloud Build
+Enable Services:
 
 ```bash
-$  gcloud services enable cloudbuild.googleapis.com 
-```
+$ gcloud services enable run.googleapis.com
+$ gcloud services enable cloudbuild.googleapis.com
+$ gcloud services enable eventarc.googleapis.com
+$ gcloud services enable cloudbuild.googleapis.com
+$ gcloud services enable logging.googleapis.com
+$ gcloud services enable artifactregistry.googleapis.com
+````
 
 ```bash
 $ gcloud run services list
