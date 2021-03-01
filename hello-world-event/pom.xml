@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>hello-world</artifactId>
+    <artifactId>hello-world-event</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hello-world</name>
+    <name>hello-world-event</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
@@ -41,7 +41,7 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <to>
-                        <image>gcr.io/cloud-run-demos-306217/hello-world</image>
+                        <image>gcr.io/cloud-run-demos-306217/hello-world-event</image>
                     </to>
                     <container>
                         <!-- otherwise the java process runs as root -->
@@ -52,6 +52,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
