@@ -10,6 +10,7 @@
 
     <modules>
         <module>hello-world</module>
+        <module>hello-world-event</module>
     </modules>
 
 </project>

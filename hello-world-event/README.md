@@ -90,3 +90,9 @@ Check the logs:
 $ gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=hello-world-event" | grep Detect
 textPayload: 'Detected change in Cloud Storage bucket: storage.googleapis.com/projects/_/buckets/hello-world-event-cloud-run-demos-306217/objects/random.txt'
 ```
+
+To delete the trigger:
+
+```bash
+$ gcloud eventarc triggers delete hello-world-event-trigger
+```

@@ -1,5 +1,3 @@
-
-
 Switch to project and set some config:
 
 ```bash
@@ -8,35 +6,27 @@ $ gcloud config set run/region europe-west4
 $ gcloud config set run/platform managed 
 ```
 
+```bash
+$ PROJECT_ID=$(gcloud config get-value project)
+```
+
 Enable Services:
 
 ```bash
 $ gcloud services enable run.googleapis.com
 $ gcloud services enable cloudbuild.googleapis.com
 $ gcloud services enable eventarc.googleapis.com
-$ gcloud services enable cloudbuild.googleapis.com
 $ gcloud services enable logging.googleapis.com
 $ gcloud services enable artifactregistry.googleapis.com
 ````
 
-```bash
-$ gcloud run services list
-   SERVICE         REGION        URL                                             LAST DEPLOYED BY                       LAST DEPLOYED AT
-✔  demo-cloud-run  europe-west4  https://demo-cloud-run-edbd2pdvbq-ez.a.run.app  zoltan.altfatter@cloudnativecoach.com  2021-03-01T20:03:04.581764Z
-```
-
-```bash
-$ gcloud run revisions list
-   REVISION                  ACTIVE  SERVICE         DEPLOYED                 DEPLOYED BY
-✔  demo-cloud-run-00001-qiv  yes     demo-cloud-run  2021-03-01 20:01:44 UTC  zoltan.altfatter@cloudnativecoach.com
-```
 
 Build the image and test locally
 
 ```bash
 $ mvn clean package jib:dockerBuild
-$ docker run -p 8080:8080 gcr.io/cloud-run-demos-306217/hello-world -d
-$ http :8080/
+$ docker run -p 8080:8080 gcr.io/${PROJECT_ID}/hello-world -d
+$ http :8080
 Hello World!
 ```
 
@@ -47,8 +37,17 @@ $ mvn clean package jib:build
 ```
 
 ```bash
-$ gcloud run deploy hello-world --image gcr.io/cloud-run-demos-306217/hello-world --allow-unauthenticated
+$ gcloud run deploy hello-world --image gcr.io/${PROJECT_ID}/hello-world --allow-unauthenticated
 ```
+
+By default, Cloud Run will deploy with `1CPU` and `256MB` memory, `80` concurrency, `300` seconds timeout instance.
+
+```bash
+gcloud run deploy hello-world --allow-unauthenticated \
+  --cpu=2 --memory=512M --set-env-vars="SPRING_PROFILES_ACTIVE=prod" \
+  --image=gcr.io/${PROJECT_ID}/hello-world
+```
+
 
 ```bash
 Deploying container to Cloud Run service [hello-world] in project [cloud-run-demos-306217] region [europe-west6]
@@ -66,11 +65,26 @@ $ curl https://hello-world-edbd2pdvbq-oa.a.run.app
 Hello World!!
 ```
 
+View the services and revisions:
+
+```bash
+$ gcloud run services list
+   SERVICE         REGION        URL                                             LAST DEPLOYED BY                       LAST DEPLOYED AT
+✔  demo-cloud-run  europe-west4  https://demo-cloud-run-edbd2pdvbq-ez.a.run.app  zoltan.altfatter@cloudnativecoach.com  2021-03-01T20:03:04.581764Z
+```
+
+```bash
+$ gcloud run revisions list
+   REVISION                  ACTIVE  SERVICE         DEPLOYED                 DEPLOYED BY
+✔  demo-cloud-run-00001-qiv  yes     demo-cloud-run  2021-03-01 20:01:44 UTC  zoltan.altfatter@cloudnativecoach.com
+```
+
+
 
 Resources:
 
-Trigger Cloud Run with events from more than 60 Google Cloud sources:
+* Trigger Cloud Run with events from more than 60 Google Cloud sources:
 https://cloud.google.com/blog/products/serverless/build-event-driven-applications-in-cloud-run
 
-https://cloudevents.io/
+* https://cloudevents.io/
 
