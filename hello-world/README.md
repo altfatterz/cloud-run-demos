@@ -20,6 +20,13 @@ $ gcloud services enable logging.googleapis.com
 $ gcloud services enable artifactregistry.googleapis.com
 ````
 
+For vulnerability scanning
+    
+```bash
+gcloud services enable containeranalysis.googleapis.com
+gcloud services enable containerscanning.googleapis.com
+```
+
 
 Build the image and test locally
 
@@ -34,6 +41,10 @@ Deploy the image to GCR
 
 ```bash
 $ mvn clean package jib:build
+```
+
+```bash
+$ open https://gcr.io/$PROJECT_ID/hello-world
 ```
 
 ```bash
@@ -78,6 +89,9 @@ $ gcloud run revisions list
    REVISION                  ACTIVE  SERVICE         DEPLOYED                 DEPLOYED BY
 ✔  demo-cloud-run-00001-qiv  yes     demo-cloud-run  2021-03-01 20:01:44 UTC  zoltan.altfatter@cloudnativecoach.com
 ```
+
+
+
 
 
 

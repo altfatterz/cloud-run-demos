@@ -40,6 +40,9 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
+                    <from>
+                        <image>gcr.io/distroless/java:11</image>
+                    </from>
                     <to>
                         <image>gcr.io/cloud-run-demos-306217/hello-world</image>
                     </to>
