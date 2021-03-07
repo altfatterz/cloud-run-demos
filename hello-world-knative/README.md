@@ -90,3 +90,9 @@ Update Knative Service:
 $ kn service update hello-world-knative --image=docker.io/altfatterz/hello-world-knative:0.0.1-SNAPSHOT --env TARGET="Knative community"
 ```
 
+
+
+
+Resources:
+* https://knative.dev/docs/install/any-kubernetes-cluster/
+* https://knative.dev/blog/1/01/01/how-to-set-up-a-local-knative-environment-with-kind-and-without-dns-headaches/
