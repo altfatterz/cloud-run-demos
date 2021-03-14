@@ -44,7 +44,7 @@
                         <image>gcr.io/distroless/java:11</image>
                     </from>
                     <to>
-                        <image>gcr.io/cloud-run-demos-306217/hello-world</image>
+                        <image>gcr.io/cloud-run-demos-306217/${project.artifactId}:${project.version}</image>
                     </to>
                     <container>
                         <!-- otherwise the java process runs as root -->

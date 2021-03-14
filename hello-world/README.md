@@ -32,7 +32,7 @@ Build the image and test locally
 
 ```bash
 $ mvn clean package jib:dockerBuild
-$ docker run -p 8080:8080 gcr.io/${PROJECT_ID}/hello-world -d
+$ docker run --rm -p 8080:8080 gcr.io/${PROJECT_ID}/hello-world:0.0.1-SNAPSHOT -d
 $ http :8080
 Hello World!
 ```
@@ -40,15 +40,17 @@ Hello World!
 Deploy the image to GCR
 
 ```bash
-$ mvn clean package jib:build
+$ docker push gcr.io/${PROJECT_ID}/hello-world:0.0.1-SNAPSHOT
 ```
 
 ```bash
-$ open https://gcr.io/$PROJECT_ID/hello-world
+$ gcloud container images list-tags gcr.io/cloud-run-demos-306217/hello-world
+DIGEST        TAGS            TIMESTAMP
+1f2a539da7d5  0.0.1-SNAPSHOT  2021-03-14T08:40:25
 ```
 
 ```bash
-$ gcloud run deploy hello-world --image gcr.io/${PROJECT_ID}/hello-world --allow-unauthenticated
+$ gcloud run deploy hello-world --image gcr.io/${PROJECT_ID}/hello-world:0.0.1-SNAPSHOT --allow-unauthenticated
 ```
 
 By default, Cloud Run will deploy with `1CPU` and `256MB` memory, `80` concurrency, `300` seconds timeout instance.

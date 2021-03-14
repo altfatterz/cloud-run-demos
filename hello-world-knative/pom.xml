@@ -37,13 +37,6 @@
                 <configuration>
                     <imageName>altfatterz/${project.artifactId}:${project.version}</imageName>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-image</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
